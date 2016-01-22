@@ -8,7 +8,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
     <!-- JS dependencies (order matters!) -->
-    <script src="scripts/platformOverrides.js"></script>
     <script src="lib/angular/angular.min.js"></script>
     <script src="lib/onsen/js/onsenui.js"></script>
     <!-- External libary for authentication-->
@@ -46,7 +45,7 @@
           ng-repeat="venue in venues">
             <ons-row class="item">
               <ons-col width="100px">
-                <img class="shop" src="{{venue.picture_url}}" />
+                <img class="shop" ng-src="{{venue.picture_url}}" />
               </ons-col>
               <ons-col>
                 <ons-row class="item-row">
