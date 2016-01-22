@@ -41,7 +41,7 @@
         </div>
         <div ng-show="obj.state == 'noResult'" class="noResults">No results found</div>
         <ons-list ng-show="obj.state == 'loaded'" class="myList fullHeight">
-          <ons-list-item modifier="tappable" ng-click="cellClick(venue.venue_id, $event)"
+          <ons-list-item modifier="tappable" ng-click="cellClick(venue.venueID, $event)"
           ng-repeat="venue in venues">
             <ons-row class="item">
               <ons-col width="100px">

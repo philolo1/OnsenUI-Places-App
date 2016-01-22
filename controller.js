@@ -42,7 +42,7 @@ var parseVenue = function(data) {
     title: venue.name,
     plus: plus,
     minus: minus,
-    venue_id: venue.id,
+    venueID: venue.id,
     picture_url: venue.photos.groups[0].items[0].prefix + '100x100' + venue.photos.groups[0].items[0].suffix,
     reviews: venue.ratingSignals + ' reviews',
     price: price,
@@ -104,9 +104,9 @@ angular.module('app').controller('AppController', function($scope, $http) {
     state: 'isLoading',
   };
 
-  $scope.cellClick = function(venue_id, event) {
+  $scope.cellClick = function(venueID, event) {
     navi.pushPage('detail.html', {
-      venueID: venue_id
+      venueID: venueID
     });
   };
 
@@ -191,7 +191,7 @@ angular.module('app').controller('DetailController', function($scope, $http) {
       $scope.lat + "+" + $scope.lng;
   };
 
-  $scope.venue_id = navi.getCurrentPage().options.venueID;
+  $scope.venueID = navi.getCurrentPage().options.venueID;
   $scope.obj = {
     state: 'loading',
   };
@@ -201,7 +201,7 @@ angular.module('app').controller('DetailController', function($scope, $http) {
 
   $http.get(
     "https://api.foursquare.com/v2/venues/" +
-    $scope.venue_id +
+    $scope.venueID +
     "?client_id=" + clientID +
     "&client_secret=" + clientSecret +
     "&v=20131124"
