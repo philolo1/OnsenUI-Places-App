@@ -1,0 +1,150 @@
+.toolbar {
+  background: #0072b1;
+}
+
+.toolbar div {
+  color: white;
+}
+
+.ons-toolbar-button {
+  color: white;
+}
+
+.toolbar-button {
+  color: white;
+}
+
+.filterCol {
+  line-height: 65px;
+  padding-left: 12px;
+  font-size: 20px;
+}
+
+.filterCol2 {
+  margin-top: 20px;
+}
+
+.loader {
+  margin-top: 52px;
+  display: flex;
+}
+
+.loader2 {
+  margin-top: 25px;
+  display: flex;
+}
+
+.myList {
+  margin-top: 32px;
+}
+
+.backText {
+  padding-left: 15px;
+  padding-top: 12px;
+}
+
+.searchBar {
+  position: absolute;
+  top: 0px;
+  z-index: 10000;
+}
+
+.chevron {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 10px;
+}
+
+.fullHeight {
+  -webkit-overflow-scrolling: touch;
+  height: 100%;
+}
+
+.noResults {
+  margin-top: 32px;
+  padding-top: 15px;
+  font-size: 18px;
+  color: grey;
+  text-align: center
+}
+
+.loader div {
+  flex-grow: 1;
+}
+
+.loader2 div {
+  flex-grow: 1;
+}
+
+.myC {
+  align-self: center;
+  padding-left: 20px;
+}
+
+.border {
+  border-color: lightgrey;
+  border-style: solid;
+  border-width: 0px;
+  border-bottom-width: 1px;
+}
+
+.item {
+  border-color: lightgrey;
+  border-style: solid;
+  border-width: 0px;
+  border-bottom-width: 1px;
+}
+
+.shop {
+  margin-top: 10px;
+  width: 90px;
+  height: 90px;
+}
+
+.item-row {
+  line-height: 20px;
+  margin-top: 10px;
+}
+
+.item-row2 {
+  margin-top: 5px;
+  line-height: 15px;
+}
+
+.toolbar-button--quiet {
+  color: white;
+}
+
+.item-row3 {
+  margin-top: 5px;
+  line-height: 17px;
+}
+
+.item-row4 {
+  line-height: 17px;
+}
+
+.distance {
+  font-size: 13px;
+  color: grey;
+}
+
+.info {
+  margin-top: 2px;
+  font-size: 13px;
+  color: grey;
+}
+
+.street {
+  font-size: 13px;
+}
+
+.rightText {
+  text-align: right;
+}
+
+.shopTitle {
+  font-weight: 500;
+  font-size: 16px;
+}

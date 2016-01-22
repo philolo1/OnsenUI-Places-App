@@ -1,0 +1,37 @@
+<ons-page ng-controller="FilterController">
+  <ons-toolbar class="toolbar">
+    <div class="left">
+      <ons-gesture-detector class="backText" ng-tap="cancelClick()">Cancel</ons-gesture-detector>
+    </div>
+    <div class="center">Filter</div>
+    <div class="right">
+      <ons-toolbar-button ng-click="applyClick()">Apply</ons-toolbar-button>
+    </div>
+  </ons-toolbar>
+  <ons-list>
+    <ons-list-item>
+      <ons-row>
+        <ons-col class="border filterCol">Food</ons-col>
+        <ons-col width="60px" class="border filterCol2">
+          <ons-switch var="foodSlider"></ons-switch>
+        </ons-col>
+      </ons-row>
+    </ons-list-item>
+    <ons-list-item>
+      <ons-row>
+        <ons-col class="border filterCol">Shops</ons-col>
+        <ons-col width="60px" class="border filterCol2">
+          <ons-switch var="shopSlider"></ons-switch>
+        </ons-col>
+      </ons-row>
+    </ons-list-item>
+    <ons-list-item>
+      <ons-row>
+        <ons-col class="border filterCol">Outdoors</ons-col>
+        <ons-col width="60px" class="border filterCol2">
+          <ons-switch var="outdoorSlider"></ons-switch>
+        </ons-col>
+      </ons-row>
+    </ons-list-item>
+  </ons-list>
+</ons-page>
