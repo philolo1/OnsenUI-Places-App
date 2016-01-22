@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<!-- CSP support mode (required for Windows Universal apps): https://docs.angularjs.org/api/ng/directive/ngCsp -->
+<html lang="en" ng-app="app" ng-csp="">
+  <head>
+
+  <meta charset="utf-8" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+
+    <!-- JS dependencies (order matters!) -->
+    <script src="scripts/platformOverrides.js"></script>
+    <script src="lib/angular/angular.min.js"></script>
+    <script src="lib/onsen/js/onsenui.js"></script>
+
+    <!-- External libary for authentication-->
+    <script src="./controller.js"></script>
+
+    <!-- CSS dependencies -->
+    <link rel="stylesheet" href="lib/onsen/css/onsenui.css" />
+    <link rel="stylesheet" href="lib/onsen/css/onsen-css-components-blue-basic-theme.css" />
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- CSP support mode (required for Windows Universal apps) -->
+    <link rel="stylesheet" href="lib/angular/angular-csp.css" />
+
+    <!-- --------------- App init --------------- -->
+    <title>Onsen UI Places App</title>
+</head>
+
+<body >
+  <ons-navigator var="navi">
+        <ons-page ng-controller="AppController"  var="appController">
+          <ons-toolbar class="toolbar" >
+
+            <div class="center">
+              Onsen Places
+            </div>
+
+            <div class="right">
+                <ons-toolbar-button ng-click="filterClick()" >Filter</ons-toolbar-button>
+              </div>
+         </ons-toolbar>
+
+          
+          <input type="search" ng-model="obj.searchString" ng-change="search()"  placeholder="Search" class="search-input searchBar">
+
+          <div ng-show="obj.state == 'isLoading'" class="loader"> 
+            <div > </div>
+            <ons-icon icon="ion-load-c"  spin="true"></ons-icon>
+            <div > </div>
+          </div>
+
+          <div ng-show="obj.state == 'noResult'"  class="noResults"> 
+             No results found 
+          </div>
+
+          <ons-list ng-show="obj.state == 'loaded'"  class="myList fullHeight" >
+            <ons-list-item modifier="tappable"  ng-click="cellClick(venue.venue_id, $event)"  ng-repeat="venue in venues">
+      <ons-row class="item">
+        <ons-col width="100px">
+          <img class="shop"  src="{{venue.picture_url}}" />
+        </ons-col>
+        <ons-col>
+          <ons-row class="item-row">
+            <ons-col class="shopTitle">
+              {{venue.title}}
+            </ons-col>
+            </ons-row>
+        <ons-row class="item-row2">
+          <ons-col width="96px" >
+            <div>
+              <div>
+                <span ng-repeat="el in venue.plus">
+                  <img src="img/star_gold.png" height="15px" alt=""/>
+                </span>
+              <span ng-repeat="el in venue.minus" >
+              <img src="img/star_grey.png" height="15px" alt=""/>
+              </spane>
+            </div>
+            </div>
+            </ons-col>
+            <ons-col class="info" >
+              {{venue.reviews}}
+            </ons-col>
+
+            <ons-col class="rightText info" width="20px">
+              {{venue.price}}
+              </ons-col>
+            </ons-row>
+            <ons-row class="item-row3" >
+              <ons-col class="street">
+                {{venue.place}}
+              </ons-col>
+            </ons-row>
+            <ons-row class="item-row4" >
+              <ons-col class="info">
+                {{venue.category}}
+              </ons-col>
+            </ons-row>
+          </ons-col>
+        <ons-col width="20px">
+              <img class="chevron" src="img/chevron.png" />
+        </ons-col>
+      </ons-row>
+    </ons-list-item>
+  </ons-list>
+        </ons-page>
+    </ons-navigator>
+</body>
+</html>
