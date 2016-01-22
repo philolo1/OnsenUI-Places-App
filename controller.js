@@ -2,7 +2,7 @@ var parseOpenInformation = function(data) {
   var info = "";
   if (data && data.timeframes) {
     for (var i in data.timeframes[0].open) {
-      if (i !==0 ) {
+      if (i !== 0) {
         info += '\n';
       }
       info += data.timeframes[0].open[i].renderedTime;
@@ -18,7 +18,10 @@ var parseVenue = function(data) {
 
   if (venue.price) {
     var value = venue.price.tier;
-    while (value > 1) { price += '$'; value--;}
+    while (value > 1) {
+      price += '$';
+      value--;
+    }
   } else {
     price = '';
   }
@@ -26,7 +29,7 @@ var parseVenue = function(data) {
   var rating = Math.round(venue.rating) / 2.0;
   plus = [];
   minus = [];
-  for (var i in [0,1,2,3,4]) {
+  for (var i in [0, 1, 2, 3, 4]) {
     if (rating > 0.5) {
       rating--;
       plus.push(i);
@@ -38,37 +41,37 @@ var parseVenue = function(data) {
   return {
     title: venue.name,
     plus: plus,
-    minus: minus, 
+    minus: minus,
     venue_id: venue.id,
-    picture_url: venue.photos.groups[0].items[0].prefix + '100x100' +  venue.photos.groups[0].items[0].suffix,
+    picture_url: venue.photos.groups[0].items[0].prefix + '100x100' + venue.photos.groups[0].items[0].suffix,
     reviews: venue.ratingSignals + ' reviews',
     price: price,
-    place: venue.location.formattedAddress[0] +',' + venue.location.formattedAddress[1] ,
+    place: venue.location.formattedAddress[0] + ',' + venue.location.formattedAddress[1],
     category: venue.categories[0].name,
   };
 };
 
 angular.module('app', ['onsen']);
 
-angular.module('app').controller('FilterController', function ($scope, $http) { 
+angular.module('app').controller('FilterController', function($scope, $http) {
 
-  $scope.records = JSON.parse(localStorage.getItem('records'));  
+  $scope.records = JSON.parse(localStorage.getItem('records'));
 
-  angular.element(document).ready(function () {
-    
-    if ($scope.records.food)  {
+  angular.element(document).ready(function() {
+
+    if ($scope.records.food) {
       foodSlider.setChecked(true);
     }
-    if ($scope.records.shops)  {
-       shopSlider.setChecked(true);
-     }
-    if ($scope.records.outdoors)  {
+    if ($scope.records.shops) {
+      shopSlider.setChecked(true);
+    }
+    if ($scope.records.outdoors) {
       outdoorSlider.setChecked(true);
     }
-    
+
     foodSlider.on('change', function(slider) {
       $scope.records.food = slider.value;
-          });
+    });
 
     outdoorSlider.on('change', function(slider) {
       $scope.records.outdoors = slider.value;
@@ -85,9 +88,9 @@ angular.module('app').controller('FilterController', function ($scope, $http) {
   };
 
   $scope.applyClick = function() {
-    localStorage.setItem('records', JSON.stringify($scope.records));  
+    localStorage.setItem('records', JSON.stringify($scope.records));
 
-    var event = new CustomEvent("prepop", { });
+    var event = new CustomEvent("prepop", {});
     document.dispatchEvent(event);
 
     navi.popPage();
@@ -95,14 +98,16 @@ angular.module('app').controller('FilterController', function ($scope, $http) {
 });
 
 
-angular.module('app').controller('AppController', function ($scope, $http) { 
+angular.module('app').controller('AppController', function($scope, $http) {
   $scope.obj = {
     searchString: 'shibuya',
     state: 'isLoading',
   };
 
   $scope.cellClick = function(venue_id, event) {
-    navi.pushPage('detail.html', {venueID: venue_id});
+    navi.pushPage('detail.html', {
+      venueID: venue_id
+    });
   };
 
   $scope.obj = {
@@ -111,13 +116,13 @@ angular.module('app').controller('AppController', function ($scope, $http) {
   };
 
   document.addEventListener(
-  'prepop', function() {
-    $scope.search();
-  });
+    'prepop',
+    function() {
+      $scope.search();
+    });
 
 
-  $scope.$on('$routeChangeSuccess', function () {
-  });
+  $scope.$on('$routeChangeSuccess', function() {});
 
   $scope.filterClick = function() {
     navi.pushPage('filter.html');
@@ -132,8 +137,8 @@ angular.module('app').controller('AppController', function ($scope, $http) {
       outdoors: false
     };
 
-    localStorage.setItem('records', JSON.stringify(records));  
-  }   
+    localStorage.setItem('records', JSON.stringify(records));
+  }
 
   $scope.search = function() {
     $scope.obj.state = 'isLoading';
@@ -146,11 +151,11 @@ angular.module('app').controller('AppController', function ($scope, $http) {
         shops: false,
         outdoors: false
       };
-      localStorage.setItem('records', JSON.stringify(records));  
-    }   
+      localStorage.setItem('records', JSON.stringify(records));
+    }
 
     // create the category object
-    var category= [];
+    var category = [];
     if (records.food) category.push('food');
     if (records.shops) category.push('shops');
     if (records.outdoors) category.push('outdoors');
@@ -158,21 +163,21 @@ angular.module('app').controller('AppController', function ($scope, $http) {
     var clientID = "YZQZP1Q2HEJWMD5ZVBMIQD3VSZC1W4BQCCQTVFEPJWNHL0RK";
     var clientSecret = "ORHPL2VKKHUTB3KTJVDTB4D20AXBRCFKWVL12EPQNJNDFYBX";
 
-      $http.get("https://api.foursquare.com/v2/venues/explore/?near="+ $scope.obj.searchString  +"&venuePhotos=1&section="+ category.join(',')+"&client_id=" + clientID + "&client_secret="+ clientSecret +"&v=20131124")
-     .then(function (result,status) {
-       var items = result.data.response.groups[0].items;
+    $http.get("https://api.foursquare.com/v2/venues/explore/?near=" + $scope.obj.searchString + "&venuePhotos=1&section=" + category.join(',') + "&client_id=" + clientID + "&client_secret=" + clientSecret + "&v=20131124")
+      .then(function(result, status) {
+        var items = result.data.response.groups[0].items;
 
-       var help = [];
-       for (var el in items) {
-         var place = parseVenue(items[el]);
-         help.push(place);
-       }
+        var help = [];
+        for (var el in items) {
+          var place = parseVenue(items[el]);
+          help.push(place);
+        }
 
-       $scope.obj.state = 'loaded';
-       $scope.venues = help; 
-     }, function (data, status) {
-       $scope.obj.state = 'noResult';
-     });
+        $scope.obj.state = 'loaded';
+        $scope.venues = help;
+      }, function(data, status) {
+        $scope.obj.state = 'noResult';
+      });
   };
 
   $scope.$watch('obj.searchString', function() {
@@ -180,41 +185,41 @@ angular.module('app').controller('AppController', function ($scope, $http) {
   });
 });
 
-angular.module('app').controller('DetailController', function ($scope, $http) { 
+angular.module('app').controller('DetailController', function($scope, $http) {
   $scope.mapClick = function() {
-window.location.href = "http://maps.google.com/maps?z=16&t=m&q=loc:" + 
-  $scope.lat + "+" + $scope.lng;
+    window.location.href = "http://maps.google.com/maps?z=16&t=m&q=loc:" +
+      $scope.lat + "+" + $scope.lng;
   };
 
   $scope.venue_id = navi.getCurrentPage().options.venueID;
   $scope.obj = {
     state: 'loading',
-  }; 
+  };
 
   var clientID = "YZQZP1Q2HEJWMD5ZVBMIQD3VSZC1W4BQCCQTVFEPJWNHL0RK";
   var clientSecret = "ORHPL2VKKHUTB3KTJVDTB4D20AXBRCFKWVL12EPQNJNDFYBX";
 
   $http.get(
-      "https://api.foursquare.com/v2/venues/" + 
-      $scope.venue_id +
-      "?client_id=" + clientID + 
-      "&client_secret=" + clientSecret + 
-      "&v=20131124"
-  ).then(function (result,status) {
-       $scope.obj.state = 'loaded';
-      var venue = result.data.response.venue;
-       $scope.title = venue.name;
-       $scope.imgSrc = venue.bestPhoto.prefix + '300x300' +  venue.bestPhoto.suffix;
+    "https://api.foursquare.com/v2/venues/" +
+    $scope.venue_id +
+    "?client_id=" + clientID +
+    "&client_secret=" + clientSecret +
+    "&v=20131124"
+  ).then(function(result, status) {
+    $scope.obj.state = 'loaded';
+    var venue = result.data.response.venue;
+    $scope.title = venue.name;
+    $scope.imgSrc = venue.bestPhoto.prefix + '300x300' + venue.bestPhoto.suffix;
 
-       $scope.address = venue.location.formattedAddress[0] +',' + venue.location.formattedAddress[1];
-       $scope.openInfo = parseOpenInformation(venue.popular);
-       $scope.lat = venue.location.lat;
-       $scope.lng = venue.location.lng;
-     }, function (data,status) {
-       $scope.obj.state = 'noResult';
-     });
+    $scope.address = venue.location.formattedAddress[0] + ',' + venue.location.formattedAddress[1];
+    $scope.openInfo = parseOpenInformation(venue.popular);
+    $scope.lat = venue.location.lat;
+    $scope.lng = venue.location.lng;
+  }, function(data, status) {
+    $scope.obj.state = 'noResult';
+  });
 
-     $scope.backClick = function() {
-       navi.popPage();
-     };
+  $scope.backClick = function() {
+    navi.popPage();
+  };
 });

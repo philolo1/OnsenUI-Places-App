@@ -6,30 +6,28 @@
   color: white;
 }
 
-ons-toolbar-button {
-  color:white;
+.ons-toolbar-button {
+  color: white;
 }
 
 .toolbar-button {
-    color:white;
+  color: white;
 }
 
 .filterCol {
-    line-height: 65px;
-    padding-left: 12px;
-    font-size: 20px;
+  line-height: 65px;
+  padding-left: 12px;
+  font-size: 20px;
 }
 
 .filterCol2 {
   margin-top: 20px;
 }
 
-
 .loader {
   margin-top: 52px;
   display: flex;
 }
-
 
 .loader2 {
   margin-top: 25px;
@@ -41,13 +39,13 @@ ons-toolbar-button {
 }
 
 .backText {
-  padding-left: 15px; 
-  padding-top:12px;
+  padding-left: 15px;
+  padding-top: 12px;
 }
 
 .searchBar {
-  position: absolute; 
-  top:0px; 
+  position: absolute;
+  top: 0px;
   z-index: 10000;
 }
 
@@ -65,14 +63,11 @@ ons-toolbar-button {
 
 .noResults {
   margin-top: 32px;
-  padding-top: 15px; 
-  font-size: 18px; 
-  color: grey; 
+  padding-top: 15px;
+  font-size: 18px;
+  color: grey;
   text-align: center
 }
-
-
-
 
 .loader div {
   flex-grow: 1;
@@ -82,27 +77,23 @@ ons-toolbar-button {
   flex-grow: 1;
 }
 
-
-
-
-
 .myC {
   align-self: center;
   padding-left: 20px;
 }
 
 .border {
-    border-color: lightgrey;
-    border-style: solid;
-    border-width: 0px;
-    border-bottom-width: 1px;
+  border-color: lightgrey;
+  border-style: solid;
+  border-width: 0px;
+  border-bottom-width: 1px;
 }
 
 .item {
-    border-color: lightgrey;
-    border-style: solid;
-    border-width: 0px;
-    border-bottom-width: 1px;
+  border-color: lightgrey;
+  border-style: solid;
+  border-width: 0px;
+  border-bottom-width: 1px;
 }
 
 .shop {
@@ -110,7 +101,6 @@ ons-toolbar-button {
   width: 90px;
   height: 90px;
 }
-
 
 .item-row {
   line-height: 20px;
@@ -121,7 +111,6 @@ ons-toolbar-button {
   margin-top: 5px;
   line-height: 15px;
 }
-
 
 .toolbar-button--quiet {
   color: white;
@@ -159,6 +148,3 @@ ons-toolbar-button {
   font-weight: 500;
   font-size: 16px;
 }
-
-
-

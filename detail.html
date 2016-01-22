@@ -1,43 +1,30 @@
 <ons-page ng-controller="DetailController">
-  <ons-toolbar class="toolbar" >
+  <ons-toolbar class="toolbar">
     <div class="left">
-          <ons-gesture-detector class="backText" ng-tap="backClick()">
-               Back 
-              </ons-gesture-detector>
-            </div>
-            <div class="center">
-              {{title}} 
-            </div>
-          </ons-toolbar>
-          <div ng-show="obj.state == 'loading'" class="loader2"> 
-            <div > </div>
-            <ons-icon icon="ion-load-c"  spin="true"></ons-icon>
-            <div > </div>
-          </div>
-          <div ng-show="obj.state == 'noResult'"  class="noResults"> 
-             No results found 
-          </div>
-          <ons-list ng-show="obj.state == 'loaded'">
-            <ons-row>
-              <ons-col >
-                <img ng-click="mapClick()" style="width:100%;" src="https://maps.googleapis.com/maps/api/staticmap?zoom=16&size=640x3200&maptype=roadmap&markers=color:blue%7Clabel:S%7C{{lat}},{{lng}}&key=AIzaSyBGmoYFxRHlmsK6LUPiPLWkeh0ti6iw2i4" />
-              </ons-col>
-            </ons-row>
-            <ons-row class="border" style="padding-top: 5px; padding-bottom: 5px;" >
-              <ons-col class="myC" style="align-self: center;" >
-                  Address: 
-              </ons-col>
-              <ons-col>
-                {{address}}
-              </ons-col>
-            </ons-row>
-            <ons-row class="border" style="padding-top: 5px; padding-bottom: 5px;">
-              <ons-col class="myC" style="align-self: center;" >
-                  Open: 
-              </ons-col>
-              <ons-col>
-                {{openInfo}}
-              </ons-col>
-            </ons-row>
-          </ons-list>
-   </ons-page>
+      <ons-gesture-detector class="backText" ng-tap="backClick()">Back</ons-gesture-detector>
+    </div>
+    <div class="center">{{title}}</div>
+  </ons-toolbar>
+  <div ng-show="obj.state == 'loading'" class="loader2">
+    <div></div>
+    <ons-icon icon="ion-load-c" spin="true"></ons-icon>
+    <div></div>
+  </div>
+  <div ng-show="obj.state == 'noResult'" class="noResults">No results found</div>
+  <ons-list ng-show="obj.state == 'loaded'">
+    <ons-row>
+      <ons-col>
+        <img ng-click="mapClick()" style="width:100%;" src="https://maps.googleapis.com/maps/api/staticmap?zoom=16&size=640x3200&maptype=roadmap&markers=color:blue%7Clabel:S%7C{{lat}},{{lng}}&key=AIzaSyBGmoYFxRHlmsK6LUPiPLWkeh0ti6iw2i4"
+        />
+      </ons-col>
+    </ons-row>
+    <ons-row class="border" style="padding-top: 5px; padding-bottom: 5px;">
+      <ons-col class="myC" style="align-self: center;">Address:</ons-col>
+      <ons-col>{{address}}</ons-col>
+    </ons-row>
+    <ons-row class="border" style="padding-top: 5px; padding-bottom: 5px;">
+      <ons-col class="myC" style="align-self: center;">Open:</ons-col>
+      <ons-col>{{openInfo}}</ons-col>
+    </ons-row>
+  </ons-list>
+</ons-page>
