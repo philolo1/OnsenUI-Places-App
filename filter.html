@@ -1,7 +1,10 @@
 <ons-page ng-controller="FilterController">
   <ons-toolbar class="toolbar">
     <div class="left">
-      <ons-gesture-detector class="backText" ng-tap="cancelClick()">Cancel</ons-gesture-detector>
+      <!-- <ons&#45;gesture&#45;detector class="backText" ng&#45;tap="cancelClick()">Cancel</ons&#45;gesture&#45;detector> -->
+<ons-back-button ng-click="cancelClick()">
+  Cancel
+</ons-back-button>
     </div>
     <div class="center">Filter</div>
     <div class="right">

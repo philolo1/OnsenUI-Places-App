@@ -125,7 +125,7 @@ angular.module('app').controller('AppController', function($scope, $http) {
   $scope.$on('$routeChangeSuccess', function() {});
 
   $scope.filterClick = function() {
-    navi.pushPage('filter.html');
+    navi.pushPage('filter.html', {animation: 'lift' });
   };
 
   var records = JSON.parse(localStorage.getItem('records'));
