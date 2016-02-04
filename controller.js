@@ -1,55 +1,4 @@
-var parseOpenInformation = function(data) {
-  var info = "";
-  if (data && data.timeframes) {
-    for (var i in data.timeframes[0].open) {
-      if (i !== 0) {
-        info += '\n';
-      }
-      info += data.timeframes[0].open[i].renderedTime;
-    }
-  }
 
-  return info;
-};
-
-var parseVenue = function(data) {
-  var venue = data.venue;
-  var price = '$';
-
-  if (venue.price) {
-    var value = venue.price.tier;
-    while (value > 1) {
-      price += '$';
-      value--;
-    }
-  } else {
-    price = '';
-  }
-
-  var rating = Math.round(venue.rating) / 2.0;
-  plus = [];
-  minus = [];
-  for (var i in [0, 1, 2, 3, 4]) {
-    if (rating > 0.5) {
-      rating--;
-      plus.push(i);
-    } else {
-      minus.push(i);
-    }
-  }
-
-  return {
-    title: venue.name,
-    plus: plus,
-    minus: minus,
-    venueID: venue.id,
-    picture_url: venue.photos.groups[0].items[0].prefix + '100x100' + venue.photos.groups[0].items[0].suffix,
-    reviews: venue.ratingSignals + ' reviews',
-    price: price,
-    place: venue.location.formattedAddress[0] + ',' + venue.location.formattedAddress[1],
-    category: venue.categories[0].name,
-  };
-};
 
 angular.module('app', ['onsen']);
 
@@ -169,7 +118,9 @@ angular.module('app').controller('AppController', function($scope, $http) {
 
         var help = [];
         for (var el in items) {
-          var place = parseVenue(items[el]);
+          var place = $scope.parseVenue(items[el]);
+
+
           help.push(place);
         }
 
@@ -179,6 +130,46 @@ angular.module('app').controller('AppController', function($scope, $http) {
         $scope.obj.state = 'noResult';
       });
   };
+
+  $scope.parseVenue = function(data) {
+  var venue = data.venue;
+  var price = '$';
+
+  if (venue.price) {
+    var value = venue.price.tier;
+    while (value > 1) {
+      price += '$';
+      value--;
+    }
+  } else {
+    price = '';
+  }
+
+  var rating = Math.round(venue.rating) / 2.0;
+  var plus = [];
+  var minus = [];
+  for (var i in [0, 1, 2, 3, 4]) {
+    if (rating > 0.5) {
+      rating--;
+      plus.push(i);
+    } else {
+      minus.push(i);
+    }
+  }
+
+  return {
+    title: venue.name,
+    plus: plus,
+    minus: minus,
+    venueID: venue.id,
+    picture_url: venue.photos.groups[0].items[0].prefix + '100x100' + venue.photos.groups[0].items[0].suffix,
+    reviews: venue.ratingSignals + ' reviews',
+    price: price,
+    place: venue.location.formattedAddress[0] + ',' + venue.location.formattedAddress[1],
+    category: venue.categories[0].name
+  };
+};
+
 
   $scope.$watch('obj.searchString', function() {
     $scope.search();
@@ -212,7 +203,7 @@ angular.module('app').controller('DetailController', function($scope, $http) {
     $scope.imgSrc = venue.bestPhoto.prefix + '300x300' + venue.bestPhoto.suffix;
 
     $scope.address = venue.location.formattedAddress[0] + ',' + venue.location.formattedAddress[1];
-    $scope.openInfo = parseOpenInformation(venue.popular);
+    $scope.openInfo = $scope.parseOpenInformation(venue.popular);
     $scope.lat = venue.location.lat;
     $scope.lng = venue.location.lng;
   }, function(data, status) {
@@ -222,4 +213,19 @@ angular.module('app').controller('DetailController', function($scope, $http) {
   $scope.backClick = function() {
     navi.popPage();
   };
+
+  $scope.parseOpenInformation = function(data) {
+  var info = "";
+  if (data && data.timeframes) {
+    for (var i in data.timeframes[0].open) {
+      if (i !== 0) {
+        info += '\n';
+      }
+      info += data.timeframes[0].open[i].renderedTime;
+    }
+  }
+
+  return info;
+};
+
 });
